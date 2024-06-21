@@ -1,0 +1,8 @@
+﻿name = "uptimemonitor"
+main = "src/index.js"
+compatibility_date = "2023-08-23"
+
+[[d1_databases]]
+name = "uptimemonitor-db"
+binding = "db"
+database_id = "id insert here"
