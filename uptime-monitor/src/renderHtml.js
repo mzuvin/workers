@@ -1,4 +1,4 @@
-﻿var html = `
+var html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,265 +54,337 @@ var html2=`
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>##name## - Uptime Monitor</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script> <!-- Add this line -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <style>
+  <title>##name## - Uptime Monitor</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script> <!-- Add this line -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <style>
     body{
-        font-family: "Open Sans", sans-serif;
-        background-color: #07FF62;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2349eaff'/%3E%3Cstop offset='1' stop-color='%2349eaff' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2300bb92'/%3E%3Cstop offset='1' stop-color='%2300bb92' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%230077fc'/%3E%3Cstop offset='1' stop-color='%230077fc' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2307FF62'/%3E%3Cstop offset='1' stop-color='%2307FF62' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%238B9BFF'/%3E%3Cstop offset='1' stop-color='%238B9BFF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2300596F'/%3E%3Cstop offset='1' stop-color='%2300596F' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
-        background-attachment: fixed;
-        background-size: cover;
+      font-family: "Open Sans", sans-serif;
+      background-color: #07FF62;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2349eaff'/%3E%3Cstop offset='1' stop-color='%2349eaff' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2300bb92'/%3E%3Cstop offset='1' stop-color='%2300bb92' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%230077fc'/%3E%3Cstop offset='1' stop-color='%230077fc' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2307FF62'/%3E%3Cstop offset='1' stop-color='%2307FF62' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%238B9BFF'/%3E%3Cstop offset='1' stop-color='%238B9BFF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2300596F'/%3E%3Cstop offset='1' stop-color='%2300596F' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+      background-attachment: fixed;
+      background-size: cover;
     }
-    </style>
+    table tr td, table tr th{
+        background-color: rgba(210,130,240, 0.3) !important;
+        border-color:#fff!important
+    }
+  </style>
 
 </head>
 <body onload="load()">
 <div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-7">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-11">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Results</button>
+        </li>
+        <!--<li class="nav-item" role="presentation">
+          <button onclick="history(window.result)" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Response Times</button>
+        </li>-->
+        <li class="nav-item" role="presentation">
+          <button onclick="fetchErrorData()" class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Errors</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="col-md-10">
             <h3>##name## website uptime monitoring</h3>
             <p>Last Result <span id="lastminute">It will start watching in 1 minute</span> <span id="laststatus"></span> <b id="lastmilis"></b></i>
             </p>
-        </div>
-        <div class="col-md-7">
             <canvas id="uptimeChart" width="400" height="200"></canvas>
             <canvas id="myChart" width="400" height="200"></canvas>
+          </div>
         </div>
+        <!--<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="col-md-7">
+          </div>
+        </div>-->
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+          <table class="table table-striped rounded-3 overflow-hidden" id="errorTable" border="1">
+            <thead>
+            <tr>
+              <th>Error Start</th>
+              <th>Error End</th>
+              <th>Error Codes</th>
+              <th>Duration (Minutes)</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
 
-    function day(result) {
-        const uptimePercentages = calculateDailyUptime(result);
-        const labels = uptimePercentages.map(entry => entry.date);
-        const successData = uptimePercentages.map(entry => entry.success);
-        const errorData = uptimePercentages.map(entry => entry.errors);
+  function day(result) {
+    const uptimePercentages = calculateDailyUptime(result);
+    const labels = uptimePercentages.map(entry => entry.date);
+    const successData = uptimePercentages.map(entry => entry.success);
+    const errorData = uptimePercentages.map(entry => entry.errors);
 
-        const config = {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Uptime (HTTP 200)',
-                        data: successData,
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                        borderColor: '#fff',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Errors (Non-HTTP 200)',
-                        data: errorData,
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                        borderColor: '#fff',
-                        borderWidth: 2
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'day'
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                }
+    const config = {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Uptime (HTTP 200)',
+            data: successData,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            borderColor: '#fff',
+            borderWidth: 2
+          },
+          {
+            label: 'Errors (Non-HTTP 200)',
+            data: errorData,
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: '#fff',
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day'
             }
-        };
+          },
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    };
 
-        const ctx = document.getElementById('uptimeChart').getContext('2d');
-        new Chart(ctx, config);
-    }
+    const ctx = document.getElementById('uptimeChart').getContext('2d');
+    new Chart(ctx, config);
+  }
 
-    function convertToLocalTimezone(dateTimeString) {
-        const inputDate = new Date(dateTimeString.replace(" ","T")+".000-03:00");
-        const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const utcDate = inputDate.toLocaleString('en-US', { timeZone: 'UTC', hour12: false });
-        const localDate = new Date(utcDate);
-        const localTime = localDate.toLocaleString('en-US', {
-            timeZone: localTimeZone,
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        }).replace(new RegExp('(\\d+)/(\\d+)/(\\d+), (\\d+):(\\d+):(\\d+)'), '$3-$1-$2T$4:$5:$6.00z');
-        return localTime;
-    }
+  function convertToLocalTimezone(dateTimeString) {
+    const inputDate = new Date(dateTimeString.replace(" ","T")+".000-03:00");
+    const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const utcDate = inputDate.toLocaleString('en-US', { timeZone: 'UTC', hour12: false });
+    const localDate = new Date(utcDate);
+    const localTime = localDate.toLocaleString('en-US', {
+      timeZone: localTimeZone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).replace(new RegExp('(\d+)/(\d+)/(\d+), (\d+):(\d+):(\d+)'), '$3-$1-$2T$4:$5:$6.00z');
+    return localTime;
+  }
 
 
-    function history(result) {
-        const intervalMinutes = 10;
-        const groupedData = groupDataByInterval(result, intervalMinutes);
+  function history(result) {
+    const intervalMinutes = 10;
+    const groupedData = groupDataByInterval(result, intervalMinutes);
 
-        const labels = groupedData.map(entry => entry.timestamp);
-        debugger;
-        const dataPoints = groupedData.map(entry => entry.averageResponseTimeMs);
+    const labels = groupedData.map(entry => entry.timestamp);
+    debugger;
+    const dataPoints = groupedData.map(entry => entry.averageResponseTimeMs);
 
-        const config = {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Average Response Time (ms)',
-                    data: dataPoints,
-                    fill: false,
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: '#fff',
-                    borderWidth: 2,
-                    tension: 0.1
-                }]
-            },
-            options: {
+    const config = {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Average Response Time (ms)',
+          data: dataPoints,
+          fill: false,
+          backgroundColor: 'rgba(75, 192, 192, 0.5)',
+          borderColor: '#fff',
+          borderWidth: 2,
+          tension: 0.1
+        }]
+      },
+      options: {
 
-                scales: {
-                    x: {
-                        type: 'timeseries',
-                        time: {
-                        }
-                    },
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    zoom: {
-                        zoom: {
-                            wheel: {
-                                enabled: true // Enable zooming with mouse wheel
-                            },
-                            mode: 'x' // Zooming along the x-axis
-                        },
-                        pan: {
-                            enabled: true,
-                            mode: 'x'
-                        }
-                    }
-                }
+        scales: {
+          x: {
+            type: 'timeseries',
+            time: {
             }
-        };
+          },
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true // Enable zooming with mouse wheel
+              },
+              mode: 'x' // Zooming along the x-axis
+            },
+            pan: {
+              enabled: true,
+              mode: 'x'
+            }
+          }
+        }
+      }
+    };
 
-        const ctx = document.getElementById('myChart').getContext('2d');
-        new Chart(ctx, config);
-    }
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, config);
+  }
 
-    function msToTime(duration) {
-        var milliseconds = parseInt((duration%1000))
+  function msToTime(duration) {
+    var milliseconds = parseInt((duration%1000))
             , seconds = parseInt((duration/1000)%60)
             , minutes = parseInt((duration/(1000*60))%60)
             , hours = parseInt((duration/(1000*60*60))%24);
-        
-        hours = (hours < 10) ? "0" + hours : hours;
-        minutes = (minutes < 10) ? "0" + minutes : minutes;
-        seconds = (seconds < 10) ? "0" + seconds : seconds;
-        
-        return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  }
+
+  function load(){
+    fetch("/api?id=##id##").then(res => res.json()).then(result => {
+      day(result);
+      history(result);
+      try{
+        document.getElementById("lastminute").innerText= new Date(convertToLocalTimezone(result[result.length-1].timestamp)).toLocaleString();
+        document.getElementById("laststatus").innerHTML= result[result.length-1].responseCode;
+        document.getElementById("lastmilis").innerText= msToTime(result[result.length-1].responseTimeMs);
+      }catch(e){
+
+      }
+    });
+  }
+
+  function addErrorToTable(errors) {
+    const table = document.getElementById("errorTable").getElementsByTagName('tbody')[0];
+    table.innerHTML="";
+    errors.forEach(error => {
+      const newRow = table.insertRow(); 
+
+      const cell1 = newRow.insertCell(0);
+      const cell2 = newRow.insertCell(1);
+      const cell3 = newRow.insertCell(2);
+      const cell4 = newRow.insertCell(3);
+
+      cell1.innerHTML = new Date(convertToLocalTimezone(error.ErrorStart)).toLocaleString();
+      cell2.innerHTML = new Date(convertToLocalTimezone(error.ErrorEnd)).toLocaleString();
+      cell3.innerHTML = error.ErrorCodes.replace(",200","").replace("200");
+      cell4.innerHTML = error.DurationMinutes.toFixed();
+    });
+  }
+
+
+  // API'den veri çekme ve tabloya ekleme
+  async function fetchErrorData() {
+    try {
+     const table = document.getElementById("errorTable").getElementsByTagName('tbody')[0];
+     table.innerHTML="Loading...";
+      const response = await fetch('/error?id=##id##');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      addErrorToTable(data);
+    } catch (error) {
+      console.error('Fetch error:', error);
     }
+  }
 
-    function load(){
-        fetch("/api?id=##id##").then(res => res.json()).then(result => {
-            day(result);
-            history(result);
-            
-            try{
-                document.getElementById("lastminute").innerText= new Date(convertToLocalTimezone(result[result.length-1].timestamp)).toLocaleString();
-                document.getElementById("laststatus").innerHTML= result[result.length-1].responseCode;
-                document.getElementById("lastmilis").innerText= msToTime(result[result.length-1].responseTimeMs);
-            }catch(e){
+  function groupDataByInterval(data, intervalMinutes) {
+    const groupedData = [];
+    let intervalStart = null;
+    let intervalSum = 0;
+    let intervalCount = 0;
 
-            }
-        });
-    }
+    data.forEach((entry) => {
+      const timestamp = new Date(convertToLocalTimezone(entry.timestamp));
+      if (!intervalStart) {
+        intervalStart = timestamp;
+      }
 
-    function groupDataByInterval(data, intervalMinutes) {
-        const groupedData = [];
-        let intervalStart = null;
-        let intervalSum = 0;
-        let intervalCount = 0;
+      const minutesDifference = (timestamp - intervalStart) / (1000 * 60);
 
-        data.forEach((entry) => {
-            const timestamp = new Date(convertToLocalTimezone(entry.timestamp));
-            if (!intervalStart) {
-                intervalStart = timestamp;
-            }
-
-            const minutesDifference = (timestamp - intervalStart) / (1000 * 60);
-
-            if (minutesDifference < intervalMinutes) {
-                intervalSum += entry.responseTimeMs;
-                intervalCount += 1;
-            } else {
-                if (intervalCount > 0) {
-                    groupedData.push({
-                        timestamp: intervalStart,
-                        averageResponseTimeMs: intervalSum / intervalCount,
-                    });
-                }
-
-                intervalStart = timestamp;
-                intervalSum = entry.responseTimeMs;
-                intervalCount = 1;
-            }
-        });
-
+      if (minutesDifference < intervalMinutes) {
+        intervalSum += entry.responseTimeMs;
+        intervalCount += 1;
+      } else {
         if (intervalCount > 0) {
-            groupedData.push({
-                timestamp: intervalStart,
-                averageResponseTimeMs: intervalSum / intervalCount,
-            });
+          groupedData.push({
+            timestamp: intervalStart,
+            averageResponseTimeMs: intervalSum / intervalCount,
+          });
         }
 
-        return groupedData;
+        intervalStart = timestamp;
+        intervalSum = entry.responseTimeMs;
+        intervalCount = 1;
+      }
+    });
+
+    if (intervalCount > 0) {
+      groupedData.push({
+        timestamp: intervalStart,
+        averageResponseTimeMs: intervalSum / intervalCount,
+      });
     }
 
-    function calculateDailyUptime(data) {
-        const uptimeData = {};
+    return groupedData;
+  }
 
-        data.forEach(entry => {
-            const date = new Date(entry.timestamp);
-            const dateString = date.toISOString().split('T')[0];
+  function calculateDailyUptime(data) {
+    const uptimeData = {};
 
-            if (!uptimeData[dateString]) {
-                uptimeData[dateString] = { total: 0, success: 0, errors: 0 };
-            }
+    data.forEach(entry => {
+      const date = new Date(entry.timestamp);
+      const dateString = date.toISOString().split('T')[0];
 
-            uptimeData[dateString].total += 1;
-            if (entry.responseCode === 200) {
-                uptimeData[dateString].success += 1;
-            } else {
-                uptimeData[dateString].errors += 1;
-            }
-        });
+      if (!uptimeData[dateString]) {
+        uptimeData[dateString] = { total: 0, success: 0, errors: 0 };
+      }
 
-        const uptimePercentages = Object.keys(uptimeData).map(date => {
-            const { total, success, errors } = uptimeData[date];
-            return {
-                date: date,
-                success: (success / total) * 100,
-                errors: (errors / total) * 100
-            };
-        });
+      uptimeData[dateString].total += 1;
+      if (entry.responseCode === 200) {
+        uptimeData[dateString].success += 1;
+      } else {
+        uptimeData[dateString].errors += 1;
+      }
+    });
 
-        return uptimePercentages;
-    }
+    const uptimePercentages = Object.keys(uptimeData).map(date => {
+      const { total, success, errors } = uptimeData[date];
+      return {
+        date: date,
+        success: (success / total) * 100,
+        errors: (errors / total) * 100
+      };
+    });
+
+    return uptimePercentages;
+  }
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
 `
